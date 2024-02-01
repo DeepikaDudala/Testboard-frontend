@@ -1,7 +1,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = "include";
 const instance = axios.create({
-  baseURL: process.env.BACKEND_URL,
+  baseURL: https://testboard-api.onrender.com/api/v1,
   withCredentials: "include",
 });
 
