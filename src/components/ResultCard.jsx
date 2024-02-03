@@ -48,9 +48,9 @@ function ResultCard() {
             </thead>
             <tbody>
               {result.results.map(
-                ({ _id, studentName, percentage, total, scored }) => (
+                ({ _id, studentName, percentage, total, scored }, i) => (
                   <tr key={_id}>
-                    <td>{_id}</td>
+                    <td>{i + 1}</td>
                     <td>{studentName}</td>
                     <td>{total}</td>
                     <td>{scored}</td>
@@ -81,29 +81,27 @@ function ResultCard() {
     result && (
       <div className="container ">
         <div className="row justify-content-center ">
-          <div className="col-8 text-center ">
-            <div className="card mt-5" style={{ backgroundColor: "#e7f7fd" }}>
-              <div className="card-body">
-                <div className="row pb-2 align-items-center">
-                  <p className="col-4 text-end h6">Test Name :</p>
-                  <p className="col-8">{result.testName}</p>
-                </div>
-                <div className="row pb-2 align-items-center">
-                  <p className="col-4 text-end h6">Total Marks :</p>
-                  <p className="col-8">{result.total} Marks</p>
-                </div>
-                <div className="row pb-2 align-items-center">
-                  <p className="col-4 text-end h6">Scored :</p>
-                  <p className="col-8">{result.scored} Marks</p>
-                </div>
-                <div className="row pb-2 align-items-center">
-                  <p className="col-4 text-end h6">Percentage :</p>
-                  <p className="col-8">{parseInt(result.percentage)} %</p>
-                </div>
-                <button className="btn btn-primary me-3" onClick={handleBack}>
-                  Back
-                </button>
+          <div className="card mt-5" style={{ backgroundColor: "#e7f7fd" }}>
+            <div className="card-body">
+              <div className="row pb-2 align-items-center">
+                <p className="col text-end h6">Test Name :</p>
+                <p className="col">{result.testName}</p>
               </div>
+              <div className="row pb-2 align-items-center">
+                <p className="col text-end h6">Total Marks :</p>
+                <p className="col">{result.total} Marks</p>
+              </div>
+              <div className="row pb-2 align-items-center">
+                <p className="col text-end h6">Scored :</p>
+                <p className="col">{result.scored} Marks</p>
+              </div>
+              <div className="row pb-2 align-items-center">
+                <p className="col text-end h6">Percentage :</p>
+                <p className="col">{parseInt(result.percentage)} %</p>
+              </div>
+              <button className="btn btn-primary me-3" onClick={handleBack}>
+                Back
+              </button>
             </div>
           </div>
           <div className=" col-8">
