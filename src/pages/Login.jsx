@@ -80,6 +80,7 @@ function Login() {
             id="name"
             handleChange={handleChange}
           />
+          <br></br>
           <InputField
             type="password"
             place="Password"
@@ -88,6 +89,7 @@ function Login() {
             id="password"
             handleChange={handleChange}
           />
+          <br></br>
           <Link to="/" className="link-text">
             Create an account
           </Link>
