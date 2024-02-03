@@ -89,7 +89,7 @@ function Register() {
         img={SignUpLogo}
         heading="Register"
         form={
-          <form className="d-flex flex-column mt-5" onSubmit={handleSubmit}>
+          <form className="" onSubmit={handleSubmit}>
             <InputField
               type="name"
               place="Name"
@@ -97,6 +97,7 @@ function Register() {
               value={name}
               handleChange={handleChange}
             />
+            <br></br>
             <InputField
               type="email"
               place="Email"
@@ -104,6 +105,7 @@ function Register() {
               value={email}
               handleChange={handleChange}
             />
+            <br></br>
             <InputField
               type="password"
               place="Password"
@@ -111,6 +113,7 @@ function Register() {
               value={password}
               handleChange={handleChange}
             />
+            <br></br>
             <InputField
               type="password"
               place="Confirm Password"
@@ -118,6 +121,7 @@ function Register() {
               value={confirmPassword}
               handleChange={handleChange}
             />
+            <br></br>
             <Link to="/login" className="link-text ">
               I am already registered
             </Link>
