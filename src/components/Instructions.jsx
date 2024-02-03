@@ -23,19 +23,26 @@ function Instructions({ test, setTakeTest }) {
             </div>
             <div className="card-body">
               <div className="row pb-2 align-items-center">
-                <p className="col-4 text-end h6">Test Name :</p>
-                <p className="col-8">{test.testName}</p>
+                <p className="col-5 text-end h6">Test Name :</p>
+                <p className="col">{test.testName}</p>
               </div>
               <div className="row pb-2 align-items-center">
-                <p className="col-4 text-end h6">Total Marks :</p>
-                <p className="col-8">{test.totalMarks} Marks</p>
+                <p className="col-5 text-end h6">Total Marks :</p>
+                <p className="col">{test.totalMarks} Marks</p>
               </div>
               <div className="row pb-2 align-items-center">
-                <p className="col-4 text-end h6">Duration :</p>
-                <p className="col-8">{test.duration} Minutes</p>
+                <p className="col-5 text-end h6">Duration :</p>
+                <p className="col">{test.duration} Minutes</p>
               </div>
-              <div className="row pb-2 align-items-center">
-                <p className="col-4 text-end h6">Switching tab is Prohibited. The Test gets auto submitted</p>
+              <div className="row">
+                <p className="col h6 text-warning">
+                  Switching tab is Prohibited.
+                </p>
+              </div>
+              <div className="row pb-2">
+                <p className="col h6 text-warning">
+                  The Test gets auto submitted
+                </p>
               </div>
 
               <div className="mt-4 text-center">
