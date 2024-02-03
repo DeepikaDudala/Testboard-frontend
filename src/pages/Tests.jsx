@@ -15,7 +15,7 @@ function Tests() {
         <div className="container text-center">
           <h4 className="text-primary p-4">Tests</h4>
           {tests.length && (
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-md-3">
               <>
                 {tests.map(({ testName, _id }) => (
                   <CardComponent
@@ -43,7 +43,7 @@ function Tests() {
       <div className="container text-center">
         <h4 className="text-primary p-4">Tests</h4>
         {tests.length && (
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-md-3">
             {tests.map(({ testName, _id }) => (
               <CardComponent
                 name={testName}
