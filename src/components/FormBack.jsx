@@ -3,9 +3,9 @@ import React from "react";
 function FormBack({ heading, img, form }) {
   return (
     <>
-      <div className=" p-3 m-5 text-center">
+      <div className=" pt-3 mt-3 text-center">
         <div className="row">
-          <div className="col-md-5 d-none d-md-inline">
+          <div className="col-md-5  d-none d-md-inline">
             <img src={img} alt="Login Logo" />
           </div>
           <div className="col-md-7 ">
