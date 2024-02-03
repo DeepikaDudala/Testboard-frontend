@@ -34,6 +34,9 @@ function Instructions({ test, setTakeTest }) {
                 <p className="col-4 text-end h6">Duration :</p>
                 <p className="col-8">{test.duration} Minutes</p>
               </div>
+              <div className="row pb-2 align-items-center">
+                <p className="col-4 text-end h6">Switching tab is Prohibited. The Test gets auto submitted</p>
+              </div>
 
               <div className="mt-4 text-center">
                 <button className="btn btn-danger me-3" onClick={handleCancel}>
