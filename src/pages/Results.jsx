@@ -12,7 +12,7 @@ function Results() {
     <div>
       <div className="container text-center">
         <h4 className="text-primary p-4">Results</h4>
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-md-3">
           {results.map(({ _id, testName }) => (
             <CardComponent
               name={testName}
