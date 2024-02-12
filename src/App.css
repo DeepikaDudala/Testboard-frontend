@@ -89,3 +89,15 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-color: var(--blue-100);
 }
+@media (max-width: 992px) {
+	.w-md-50 {
+		width: 50%;
+	}
+}
+
+@media (min-width: 992px) {
+	.w-lg-35 {
+		width: 35%;
+	}
+}
+
