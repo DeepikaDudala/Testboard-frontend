@@ -90,10 +90,11 @@ function Login() {
             handleChange={handleChange}
           />
           <br></br>
-          <Link to="/" className="link-text">
-            Create an account
+          <Link to="/" className="text-[#c92bd1] text-[10px] font-serif ">
+            Don't have an account? Signup
           </Link>
-          <Button text="Login" />
+          <br />
+          <Button text="Sign In" />
         </form>
       }
     />

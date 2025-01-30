@@ -2,19 +2,24 @@ import React from 'react';
 
 function FormBack({ heading, img, form }) {
 	return (
-		<>
-			<div className=" pt-3 mt-3 text-center">
-				<div className="row">
-					<div className="col-md-5  d-none d-md-inline">
-						<img src={img} alt="Login Logo" />
-					</div>
-					<div className="col-md-7 ">
-						<h4 className="my-3 text-primary">{heading}</h4>
-						{form}
-					</div>
+		<div className="  bg-[#f1edf1]  text-center min-h-screen">
+			<div className="flex flex-col md:flex-row  justify-center w-full">
+				<div className="  md:w-7/12 w-full px-4 items-center md:mt-10">
+					<h1 className="text-3xl font-extrabold tracking-wide text-[#7b1481] mt-10  font-serif">
+						Test Board
+					</h1>
+					<p className="text-center text-[13px] m-2  md:w-1/2 font-serif  mx-auto">
+						Your Smart Solution for Efficient, Accurate, and Instant Test Preparation. Explore now
+					</p>
+					
+					{form}
+				</div>
+				
+				<div className="hidden md:flex md:w-5/12 justify-center">
+					<img src={img} alt="Login Logo" className="mt-10 mr-10 w-full h-auto" />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

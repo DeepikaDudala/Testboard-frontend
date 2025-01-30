@@ -122,10 +122,11 @@ function Register() {
               handleChange={handleChange}
             />
             <br></br>
-            <Link to="/login" className="link-text ">
-              I am already registered
+            <Link to="/login" className="text-[#c92bd1] text-[10px] font-serif ">
+              Have an account? Sign In
             </Link>
-            <Button text="Register" />
+            <br />
+            <Button text="Sign Up" />
           </form>
         }
       />
