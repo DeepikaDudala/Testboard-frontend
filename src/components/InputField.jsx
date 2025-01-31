@@ -7,7 +7,7 @@ function InputField({ type, place, id, name, value, handleChange }) {
       name={name}
       value={value}
       onChange={handleChange}
-      className="my-3 md:w-1/2 px-4 py-2 rounded-full border-1 border-[#7b1481] focus:border-2 focus:outline-none focus:border-[#7b1481] text-[#7b1481]"
+      className="my-3 md:w-8/12 w-full px-4 py-2 rounded-full border-1 border-[#7b1481] focus:border-2 focus:outline-none focus:border-[#7b1481] text-[#7b1481]"
     />
   );
 }

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import FormBack from "../components/FormBack";
 import InputField from "../components/InputField";
 import LoginLogo from "./../assets/LoginLogo.svg";
@@ -10,6 +11,12 @@ import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import { getTests } from "../features/tests/testsSlice";
 import { getAllResults } from "../features/results/resultsSlice";
+
+const pageVariants = {
+  initial: { opacity: 0, y: -50 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  exit: { opacity: 0, y: 50, transition: { duration: 0.5 } }
+};
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -44,17 +51,16 @@ function Login() {
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
+    const userData = { email, password };
     dispatch(login(userData));
   };
+
   useEffect(() => {
     try {
-      if (user.token) {
+      if (user?.token) {
         navigate("/tests");
       }
     } catch (err) {
@@ -67,37 +73,44 @@ function Login() {
   }
 
   return (
-    <FormBack
-      img={LoginLogo}
-      heading="Login"
-      form={
-        <form className="mt-5 " onSubmit={handleSubmit}>
-          <InputField
-            type="email"
-            place="Email"
-            name="email"
-            value={email}
-            id="name"
-            handleChange={handleChange}
-          />
-          <br></br>
-          <InputField
-            type="password"
-            place="Password"
-            name="password"
-            value={password}
-            id="password"
-            handleChange={handleChange}
-          />
-          <br></br>
-          <Link to="/" className="text-[#c92bd1] text-[10px] font-serif ">
-            Don't have an account? Signup
-          </Link>
-          <br />
-          <Button text="Sign In" />
-        </form>
-      }
-    />
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <FormBack
+        img={LoginLogo}
+        heading="Login"
+        form={
+          <form className="mt-5" onSubmit={handleSubmit}>
+            <InputField
+              type="email"
+              place="Email"
+              name="email"
+              value={email}
+              id="name"
+              handleChange={handleChange}
+            />
+            <br />
+            <InputField
+              type="password"
+              place="Password"
+              name="password"
+              value={password}
+              id="password"
+              handleChange={handleChange}
+            />
+            <br />
+            <Link to="/" className="text-[#c92bd1] text-[10px] font-serif ">
+              Don't have an account? Signup
+            </Link>
+            <br />
+            <Button text="Sign In" />
+          </form>
+        }
+      />
+    </motion.div>
   );
 }
 

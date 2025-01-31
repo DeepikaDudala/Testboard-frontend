@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
 import {
   getTest,
-  reset as resetTest,
   remove as removeTest,
   deleteTest,
 } from "../features/tests/testSlice";
@@ -19,12 +18,11 @@ function Test() {
   const { id } = useParams();
   const tests = useSelector((state) => state.tests.tests);
   const [takeTest, setTakeTest] = useState(false);
-
   const test = tests.find((test) => test._id === id);
   const questions = useSelector((state) => state.test.test.questions);
   const { isError, isLoading } = useSelector((state) => state.test);
   const { role } = useSelector((state) => state.auth.user);
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,41 +33,47 @@ function Test() {
     if (takeTest) {
       dispatch(getTest(id));
     }
-  }, [takeTest, isError]);
+  }, [takeTest, isError, dispatch, id]);
 
   useEffect(() => {
     const deleteAndRedirect = async () => {
-      if (test && window.confirm("Do you want to delete test")) {
+      if (test && window.confirm("Do you want to delete this test?")) {
         await dispatch(deleteTest(id));
         dispatch(deleteResult(id));
         await dispatch(getTests());
-        if (role == "teacher") await dispatch(deleteResult(id));
+        if (role === "teacher") await dispatch(deleteResult(id));
         dispatch(getAllResults());
+        navigate("/tests");
       }
-      navigate("/tests");
     };
-    if (role != "student") deleteAndRedirect();
-  }, [role == "teacher"]);
+    if (role !== "student") deleteAndRedirect();
+  }, [role, test, id, dispatch, navigate]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mx-auto text-center">
+      <div className={` fixed  w-full bg-black text-white p-3 flex justify-between items-center `}>
+             
+              <span className="text-xl font-bold">TestBoard</span>
+            </div>
       {test ? (
         takeTest || questions ? (
           questions && <Questions testId={id} questions={questions} />
         ) : (
-          role == "student" && (
-            <div>{<Instructions test={test} setTakeTest={setTakeTest} />}</div>
+          role === "student" && (
+            <div className="flex flex-col items-center">
+              <Instructions test={test} setTakeTest={setTakeTest} />
+            </div>
           )
         )
       ) : (
-        <>
-          <h4 className="text-center text-danger">Test Not Found</h4>
-          <img src={NoData} alt="No Data" className="w-50 d-block mx-auto" />
-        </>
+        <div className="flex flex-col items-center">
+          <h4 className="text-red-600 text-lg font-semibold">Test Not Found</h4>
+          <img src={NoData} alt="No Data" className="w-1/2 max-w-sm mt-4" />
+        </div>
       )}
     </div>
   );

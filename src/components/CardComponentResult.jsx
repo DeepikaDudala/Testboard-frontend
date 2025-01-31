@@ -17,7 +17,7 @@ import {
   FileEdit
 } from "lucide-react";
 
-function CardComponent({ id, name, buttonText, buttonType, duration, totalMarks }) {
+function CardComponentResult({ id, name, buttonText, buttonType, duration, totalMarks }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,9 +41,9 @@ function CardComponent({ id, name, buttonText, buttonType, duration, totalMarks 
   };
 
   // Test category icons (adds variety)
-  const testCategoryIcons = [<GraduationCap />, <Star />, <PencilRuler />, <FileCog />, <FileEdit />];
+  const testCategoryIcons = [<GraduationCap />, <Star />];
   const randomCategoryIcon = testCategoryIcons[Math.floor(Math.random() * testCategoryIcons.length)];
-  const colors = [ "bg-green-100 text-green-600", "bg-purple-100 text-purple-600"];
+  const colors = [ "bg-yellow-100 text-yellow-600"];
   const randomCategoryIconColour = colors[Math.floor(Math.random() * colors.length)];
 
   // Button icons
@@ -70,16 +70,7 @@ function CardComponent({ id, name, buttonText, buttonType, duration, totalMarks 
       <div className="p-5 flex flex-col items-center justify-center">
       <h3 className="text-lg font-medium text-black mb-2 text-center">{name}</h3>
 
-      <div className="w-full  flex text-[10px] flex-row  items-center justify-center space-x-2 mb-4 ">
-  <div className="flex items-center justify-center text-[#7b1481]">
-    <Clock className="w-5 h-5 mr-1  " />
-    <span>{duration} Minutes</span>
-  </div>
-  <div className="flex items-center justify-center text-[#7b1481]">
-    <BookOpen className="w-5 h-5 m-1 " />
-    <span>{totalMarks} Marks</span>
-  </div>
-</div>
+      
 
 {/* Action Button */}
 <button
@@ -95,4 +86,4 @@ function CardComponent({ id, name, buttonText, buttonType, duration, totalMarks 
   );
 }
 
-export default CardComponent;
+export default CardComponentResult;
