@@ -17,10 +17,11 @@ function Instructions({ test, setTakeTest }) {
   };
 
   return (
-    <div className="items-center justify-center flex h-screen ">
+    <div className="mt-4 ">
+      
       <div className="bg-white p-10 rounded-lg  w-full max-w-4xl  items-start">
         <div className="flex flex-row">
-        <img src={Instruct} alt="Instructions" className="w-60 mr-12" />
+        <img src={Instruct} alt="Instructions" className="max-md:hidden w-60 mr-12" />
         <div className="w-full text-left">
           <h2 className="text-left text-3xl font-bold text-[#7B1481] mb-6">Instructions</h2>
           <div className="mb-6 ">

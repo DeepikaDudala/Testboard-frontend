@@ -54,8 +54,8 @@ function Test() {
   }
 
   return (
-    <div className="container mx-auto text-center">
-      <div className={` fixed  w-full bg-black text-white p-3 flex justify-between items-center `}>
+    <div className="">
+      <div className={` w-full bg-black text-white p-3  `}>
              
               <span className="text-xl font-bold">TestBoard</span>
             </div>
