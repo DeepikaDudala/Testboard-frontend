@@ -54,6 +54,9 @@ const createTestSlice = createSlice({
       const { value, questionIndex, optionIndex } = action.payload;
       state.questions[questionIndex].options[optionIndex] = value;
     },
+    onRemoveQuestion: (state, action) => {
+      state.questions.splice(action.payload.index, 1);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(submitCreateTest.pending, (state) => {
@@ -81,5 +84,6 @@ export const {
   onChange,
   onOptionsChange,
   onQuestionsChange,
+  onRemoveQuestion,
   reset,
 } = createTestSlice.actions;

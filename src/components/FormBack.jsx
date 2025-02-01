@@ -12,6 +12,7 @@ function FormBack({ heading, img, form }) {
 						Your Smart Solution for Efficient, Accurate, and Instant Test Preparation. Explore now
 					</p>
 					
+					
 					{form}
 				</div>
 				

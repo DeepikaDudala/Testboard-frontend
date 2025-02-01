@@ -6,9 +6,11 @@ import SearchBar from "../components/SearchBar";
 import SortButton from "../components/SortButton";
 import WelcomeTest from '../assets/WelcomeTest.svg';
 import NoResults from '../assets/NoResults.svg';
+import { use } from "react";
 
 function Tests() {
   const { tests, isLoading } = useSelector((state) => state.tests);
+  const {user} = useSelector((state) => state.auth);
   const { role } = useSelector((state) => state.auth.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState(null);
@@ -16,6 +18,7 @@ function Tests() {
   if (isLoading) {
     return <Spinner />;
   }
+  console.log(user)
 
   const filteredTests = tests.filter((test) =>
     test.testName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,28 +44,31 @@ function Tests() {
           <SortButton setSortType={setSortType} />
         </div>
         {role === "teacher" ? (
-          <>
+          <div className="m-5 md:m-10 flex flex-col">
             {sortedTests.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {sortedTests.map(({ testName, _id }) => (
+              <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {sortedTests.map(({ testName, _id, duration,marks }) => (
                   <CardComponent
                     name={testName}
                     key={_id}
                     buttonText="Delete Test"
                     buttonType="bg-red-500 text-white px-4 py-2 rounded-md"
                     id={_id}
+                    duration={duration}
+                    totalMarks={marks}
                   />
                 ))}
                 <CardComponent
                   name="+"
                   buttonText="Create Test"
                   buttonType="bg-blue-500 text-white px-4 py-2 rounded-md"
+
                 />
               </div>
             ) : (
               <p className="text-gray-500">No tests found.</p>
             )}
-          </>
+          </div>
         ) : (
           <div className="m-5 md:m-10 flex flex-col">
             {!searchTerm && (
