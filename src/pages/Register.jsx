@@ -12,6 +12,10 @@ import Spinner from "../components/Spinner";
 import { getTests } from "../features/tests/testsSlice";
 import { getAllResults } from "../features/results/resultsSlice";
 import { motion } from "framer-motion";
+import { bouncy } from 'ldrs'
+
+bouncy.register()
+
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -65,7 +69,11 @@ function Register() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner child={<l-bouncy
+      size="45"
+      speed="1.75" 
+      color="black" 
+    ></l-bouncy> } />;
   }
 
   return (

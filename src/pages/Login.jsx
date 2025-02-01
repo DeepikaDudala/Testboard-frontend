@@ -11,6 +11,10 @@ import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import { getTests } from "../features/tests/testsSlice";
 import { getAllResults } from "../features/results/resultsSlice";
+import { leapfrog } from 'ldrs'
+leapfrog.register()
+
+
 
 const pageVariants = {
   initial: { opacity: 0, y: -50 },
@@ -69,7 +73,11 @@ function Login() {
   }, [user, navigate]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner child={<l-leapfrog
+      size="50"
+      speed="2.5" 
+      color="black" 
+    ></l-leapfrog>}/>
   }
 
   return (

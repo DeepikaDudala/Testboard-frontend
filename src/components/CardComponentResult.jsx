@@ -55,7 +55,7 @@ function CardComponentResult({ id, name, buttonText, buttonType, duration, total
   };
 
   return (
-    <div className="m-3  bg-white shadow-gray-300 text-xs border-0 shadow-lg rounded-xl flex flex-col  transition-all hover:shadow-xl hover:scale-101">
+    <div className="m-3  bg-white shadow-gray-300  text-xs border-0 shadow-lg rounded-xl flex flex-col  transition-all hover:shadow-xl hover:scale-101">
       {/* Centered Image/Icon */}
       <div className=" max-w-full max-h-full flex m-2 items-center justify-center">
         <div className={`${randomCategoryIconColour}   p-10 w-full h-full flex items-center justify-center rounded-xl`}>

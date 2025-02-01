@@ -31,6 +31,10 @@ function Tests() {
 
   return (
     <div className="w-full h-full">
+      <div className="md:hidden flex items-center invisible justify-center  mb-4">
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <SortButton setSortType={setSortType} />
+        </div>
       <div className="container mx-auto text-center">
         <div className="flex items-center justify-center mb-4">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -61,7 +65,6 @@ function Tests() {
           </>
         ) : (
           <div className="m-5 md:m-10 flex flex-col">
-            {/* Show the welcome message only if no search is performed */}
             {!searchTerm && (
               <div className="flex items-center max-md:hidden bg-white flex-row rounded-xl w-full justify-center p-4 mb-4">
                 <img src={WelcomeTest} className="w-1/4 h-auto" alt="Test Image" />

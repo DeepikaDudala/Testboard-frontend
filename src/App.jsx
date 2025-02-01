@@ -28,7 +28,7 @@ function AnimatedRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/tests" element={<HomeLayout child={<Tests />}/>} />
         <Route path="/results" element={<HomeLayout child={<Results />}/>} />
-        <Route path="/results/:id" element={<ResultCard />} />
+        <Route path="/results/:id" element={<HomeLayout child={<ResultCard />}/>} />
         <Route path="/tests/:id" element={<Test />} />
         <Route path="/tests/createTest" element={<NewTestCreate />} />
         <Route path="*" element={<NotFound />} />
