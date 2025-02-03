@@ -11,6 +11,11 @@ import Button from "../components/Button";
 import Spinner from "../components/Spinner";
 import { getTests } from "../features/tests/testsSlice";
 import { getAllResults } from "../features/results/resultsSlice";
+import { motion } from "framer-motion";
+import { bouncy } from 'ldrs'
+
+bouncy.register()
+
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -33,71 +38,63 @@ function Register() {
       toast.error(message);
     }
     if (isSuccess && user) {
-      toast.success("Successfully logged in!!");
+      toast.success("Successfully Registered!!");
       navigate("/tests");
       dispatch(getTests());
       dispatch(getAllResults());
     }
     dispatch(reset());
-  }, [dispatch, isError, isSuccess, user]);
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-    if (isSuccess && user) {
-      toast.success("Successfully Registered!!");
-      navigate("/tests");
-    }
-    dispatch(reset());
-  }, [dispatch, isError, isSuccess, user]);
+  }, [dispatch, isError, isSuccess, user, navigate]);
 
   useEffect(() => {
-    try {
-      if (user.token) {
-        navigate("/tests");
-      }
-    } catch (err) {
-      navigate("/");
+    if (user?.token) {
+      navigate("/tests");
     }
   }, [user, navigate]);
+
   const handleChange = (e) => {
-    setFormData((preFormData) => ({
-      ...preFormData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password != confirmPassword) toast.error("Password do not match");
-    else {
-      const userData = {
-        name,
-        email,
-        password,
-      };
-      dispatch(register(userData));
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      dispatch(register({ name, email, password }));
     }
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <Spinner child={<l-bouncy
+      size="45"
+      speed="1.75" 
+      color="black" 
+    ></l-bouncy> } />;
   }
+
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, x: 50, transition: { duration: 0.5 } }}
+    >
       <FormBack
         img={SignUpLogo}
         heading="Register"
         form={
-          <form className="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <InputField
-              type="name"
+              type="text"
               place="Name"
               name="name"
               value={name}
               handleChange={handleChange}
             />
-            <br></br>
+            <br />
             <InputField
               type="email"
               place="Email"
@@ -105,7 +102,7 @@ function Register() {
               value={email}
               handleChange={handleChange}
             />
-            <br></br>
+            <br />
             <InputField
               type="password"
               place="Password"
@@ -113,7 +110,7 @@ function Register() {
               value={password}
               handleChange={handleChange}
             />
-            <br></br>
+            <br />
             <InputField
               type="password"
               place="Confirm Password"
@@ -121,15 +118,16 @@ function Register() {
               value={confirmPassword}
               handleChange={handleChange}
             />
-            <br></br>
-            <Link to="/login" className="link-text ">
-              I am already registered
+            <br />
+            <Link to="/login" className="text-[#c92bd1] text-[10px] font-serif">
+              Have an account? Sign In
             </Link>
-            <Button text="Register" />
+            <br />
+            <Button text="Sign Up" />
           </form>
         }
       />
-    </>
+    </motion.div>
   );
 }
 

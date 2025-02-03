@@ -1,25 +1,20 @@
+@import "tailwindcss";
+
 body {
   font-family: "Libre Baskerville", serif;
   font-family: "Public Sans", sans-serif;
 }
-.navbar-color {
-  background: linear-gradient(to left, #e7f7fd, #e9ecfc, #ece0fb);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-.input-bottom-border,
-.input-bottom-border:active,
-.input-bottom-border:focus {
-  border-bottom: 1px solid rgb(234, 200, 200) !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-top: none !important;
-  font-size: small;
+
+
+.lexend-deca-regular {
+  font-family: "Lexend Deca", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.input-bottom-border::placeholder {
-  color: rgb(170, 164, 164) !important;
-  font-size: small;
-}
+
+
 .link-text {
   font-size: 14px;
   color: rgb(97, 173, 236);

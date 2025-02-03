@@ -7,6 +7,7 @@ const initialState = {
   user: user ? user : null,
   isError: false,
   isSuccess: false,
+  isSetPasswordSuccess: false,
   isLoading: false,
   message: "",
 };
@@ -46,6 +47,20 @@ export const logout = createAsyncThunk(
   async () => await authService.logout()
 );
 
+//Set Password
+export const setPassword = createAsyncThunk("auth/setPassword", async (user, thunkAPI) => {
+  try {
+    return await authService.setPassword(user);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -54,6 +69,7 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
+      state.isSetPasswordSuccess = false;
       state.message = "";
     },
   },
@@ -92,7 +108,18 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
+      })
+      .addCase(setPassword.fulfilled, (state) => {
+        state.isSetPasswordSuccess = true;
+      })
+      .addCase(setPassword.rejected, (state, action) => {
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(setPassword.pending, (state) => {
+        state.isLoading = true;
       });
+  
   },
 });
 

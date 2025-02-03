@@ -1,35 +1,34 @@
 import { motion } from "framer-motion";
 import FormBack from "../components/FormBack";
 import InputField from "../components/InputField";
-import LoginLogo from "./../assets/LoginLogo.svg";
+import passwordUpdate from "./../assets/passwordUpdate.svg";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { login, reset } from "../features/auth/authSlice";
+import {  reset, setPassword } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
-import { getTests } from "../features/tests/testsSlice";
-import { getAllResults } from "../features/results/resultsSlice";
 import { leapfrog } from 'ldrs'
 leapfrog.register()
 
 
 
 const pageVariants = {
-  initial: { opacity: 0, y: -50 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  exit: { opacity: 0, y: 50, transition: { duration: 0.5 } }
-};
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, x: -50, transition: { duration: 0.5 } }
+  };
+  
 
-function Login() {
+function SetPassword() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const { email, password } = formData;
-  const { user, isSuccess, isLoading, isError, message } = useSelector(
+  const { email, password, confirmPassword } = formData;
+  const {  isLoading, isError, message, isSetPasswordSuccess } = useSelector(
     (state) => state.auth
   );
 
@@ -40,14 +39,13 @@ function Login() {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess && user) {
-      toast.success("Successfully logged in!!");
-      navigate("/tests");
-      dispatch(getTests());
-      dispatch(getAllResults());
+    if (isSetPasswordSuccess) {
+      toast.success("Password Updated Successfully");
+      dispatch(reset());
+      navigate("/login");
     }
     dispatch(reset());
-  }, [dispatch, isError, isSuccess, user]);
+  }, [dispatch, isError, isSetPasswordSuccess]);
 
   const handleChange = (e) => {
     setFormData((preFormData) => ({
@@ -56,21 +54,16 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userData = { email, password };
-    dispatch(login(userData));
-  };
-
-  useEffect(() => {
-    try {
-      if (user?.token) {
-        navigate("/tests");
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (password !== confirmPassword) {
+        toast.error("Passwords do not match");
+      } else {
+        dispatch(setPassword({  email, password }));
       }
-    } catch (err) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
+    };
+
+
 
   if (isLoading) {
     return <Spinner child={<l-leapfrog
@@ -88,8 +81,8 @@ function Login() {
       exit="exit"
     >
       <FormBack
-        img={LoginLogo}
-        heading="Login"
+        img={passwordUpdate}
+        heading="Update Password"
         form={
           <form className="mt-5" onSubmit={handleSubmit}>
             <InputField
@@ -109,17 +102,24 @@ function Login() {
               id="password"
               handleChange={handleChange}
             />
+            <InputField
+              type="password"
+              place="Confirm Password"
+              name="confirmPassword"
+              value={confirmPassword}
+              handleChange={handleChange}
+            />
             <br />
             <div className=" flex flex-row items-center justify-center space-x-2">
-            <Link to="/" className="text-[#c92bd1] text-[10px] ">
+            <Link to="/" className="text-[#c92bd1] text-[11px] ">
               <span className="text-black">Don't have an account? </span>Signup
             </Link>
             
-            <Link to="/setPassword" className="text-[#c92bd1] text-[10px]  ">
-              <span className="text-black">Forgot Password? </span> Update Password
+            <Link to="/" className="text-[#c92bd1] text-[11px]  ">
+              <span className="text-black">Remember Password? </span> Login
             </Link>
             </div>
-            <Button text="Sign In" />
+            <Button text="Update Password" />
           </form>
         }
       />
@@ -127,4 +127,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SetPassword;
